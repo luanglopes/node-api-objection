@@ -6,16 +6,25 @@
   "repository": "https://github.com/luanglopes/node-api-objection.git",
   "author": "Luan Lopes",
   "license": "MIT",
+  "scripts": {
+    "dev:server": "ts-node-dev --inspect --transpileOnly --ignore-watch node_modules src/server.ts",
+    "build": "tsc",
+    "knex": "knex --knexfile src/database/knexfile.ts --"
+  },
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "express-async-errors": "^3.1.1",
+    "knex": "^0.21.1",
     "mysql": "^2.18.1",
-    "reflect-metadata": "^0.1.13"
+    "objection": "^2.1.3",
+    "reflect-metadata": "^0.1.13",
+    "ts-node": "^8.9.1"
   },
   "devDependencies": {
     "@types/cors": "^2.8.6",
     "@types/express": "^4.17.6",
+    "@types/knex": "^0.16.1",
     "@types/mysql": "^2.15.10",
     "@typescript-eslint/eslint-plugin": "^2.29.0",
     "@typescript-eslint/parser": "^2.29.0",
