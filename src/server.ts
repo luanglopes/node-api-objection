@@ -5,6 +5,7 @@ import 'reflect-metadata'
 
 import routes from './routes'
 import AppError from './errors/AppError'
+import './database'
 
 const app = express()
 

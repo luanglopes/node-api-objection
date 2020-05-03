@@ -1,6 +1,11 @@
-require('ts-node/register')
+import Knex from 'knex'
+import 'ts-node/register'
 
-module.exports = {
+interface Knexfile {
+  [env: string]: Knex.Config
+}
+
+const knexfile: Knexfile = {
   development: {
     client: 'mysql',
     connection: {
@@ -51,3 +56,5 @@ module.exports = {
     },
   },
 }
+
+export = knexfile
