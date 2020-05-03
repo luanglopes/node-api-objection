@@ -1,6 +1,6 @@
 import path from 'path'
 
-const helpers = {
+const dbHelpers = {
   /**
    * Returns absolute model path for models inside src/models folder
    */
@@ -9,4 +9,4 @@ const helpers = {
   },
 }
 
-export default helpers
+export default dbHelpers
