@@ -9,7 +9,8 @@ export default class Anylist extends Model {
 
   static get relationMappings(): RelationMappings {
     const AnylistItemModelPath = databaseHelpers.importModelPath('AnylistItem')
-    const User = databaseHelpers.importModelPath('User')
+    const UserModelPath = databaseHelpers.importModelPath('User')
+    const ImageModelPath = databaseHelpers.importModelPath('Image')
 
     return {
       items: {
@@ -23,10 +24,40 @@ export default class Anylist extends Model {
 
       author: {
         relation: Model.BelongsToOneRelation,
-        modelClass: User,
+        modelClass: UserModelPath,
         join: {
           from: 'anylists.userId',
           to: 'users.id',
+        },
+      },
+
+      cover: {
+        relation: Model.HasOneRelation,
+        modelClass: ImageModelPath,
+        filter(builder): void {
+          builder.where('imageableType', 'anylist_cover')
+        },
+        beforeInsert(model): void {
+          model.imageableType = 'anylist_cover'
+        },
+        join: {
+          from: 'anylists.id',
+          to: 'images.imageableId',
+        },
+      },
+
+      shareImage: {
+        relation: Model.HasOneRelation,
+        modelClass: ImageModelPath,
+        filter(builder): void {
+          builder.where('imageableType', 'anylist_share_image')
+        },
+        beforeInsert(model): void {
+          model.imageableType = 'anylist_share_image'
+        },
+        join: {
+          from: 'anylists.id',
+          to: 'images.imageableId',
         },
       },
     }
