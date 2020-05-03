@@ -12,6 +12,10 @@ app.use(cors())
 app.use(express.json())
 app.use(routes)
 
+app.use(async () => {
+  throw new AppError('Endpoint Not Found', 404)
+})
+
 app.use((err: Error, req: Request, res: Response, _: NextFunction) => {
   if (err instanceof AppError) {
     return res
