@@ -1,6 +1,6 @@
 import { Model, RelationMappings } from 'objection'
 
-import databaseHelpers from '../database/helpers'
+import dbHelpers from '../database/dbHelpers'
 
 export default class AnylistItem extends Model {
   static get tableName(): string {
@@ -8,7 +8,7 @@ export default class AnylistItem extends Model {
   }
 
   static get relationMappings(): RelationMappings {
-    const BlockModelPath = databaseHelpers.importModelPath('Block')
+    const BlockModelPath = dbHelpers.importModelPath('Block')
 
     return {
       items: {
