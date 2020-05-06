@@ -1,6 +1,6 @@
-import { Model, RelationMappings } from 'objection'
+import { Model, RelationMappings, QueryBuilder } from 'objection'
 
-import dbHelpers from '../database/dbHelpers'
+import DBHelpers from '../database/DBHelpers'
 
 export default class Anylist extends Model {
   static get tableName(): string {
@@ -8,9 +8,9 @@ export default class Anylist extends Model {
   }
 
   static get relationMappings(): RelationMappings {
-    const AnylistItemModelPath = dbHelpers.importModelPath('AnylistItem')
-    const UserModelPath = dbHelpers.importModelPath('User')
-    const ImageModelPath = dbHelpers.importModelPath('Image')
+    const AnylistItemModelPath = DBHelpers.getModelPath('AnylistItem')
+    const UserModelPath = DBHelpers.getModelPath('User')
+    const ImageModelPath = DBHelpers.getModelPath('Image')
 
     return {
       items: {
@@ -34,7 +34,7 @@ export default class Anylist extends Model {
       cover: {
         relation: Model.HasOneRelation,
         modelClass: ImageModelPath,
-        filter(builder): void {
+        filter(builder: QueryBuilder<Anylist>): void {
           builder.where('imageableType', 'anylist_cover')
         },
         beforeInsert(model): void {

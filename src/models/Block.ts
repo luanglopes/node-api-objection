@@ -1,6 +1,6 @@
 import { Model, RelationMappings } from 'objection'
 
-import dbHelpers from '../database/dbHelpers'
+import DBHelpers from '../database/DBHelpers'
 
 export default class Block extends Model {
   static get tableName(): string {
@@ -8,11 +8,11 @@ export default class Block extends Model {
   }
 
   static get relationMappings(): RelationMappings {
-    const ImageModelPath = dbHelpers.importModelPath('Image')
+    const ImageModelPath = DBHelpers.getModelPath('Image')
 
     return {
       images: {
-        relation: Model.HasOneRelation,
+        relation: Model.HasManyRelation,
         modelClass: ImageModelPath,
         filter(builder): void {
           builder.where('imageableType', 'block_image')

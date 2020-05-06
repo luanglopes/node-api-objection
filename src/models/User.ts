@@ -1,6 +1,6 @@
 import { Model, RelationMappings } from 'objection'
 
-import dbHelpers from '../database/dbHelpers'
+import DBHelpers from '../database/DBHelpers'
 
 export default class User extends Model {
   static get tableName(): string {
@@ -8,8 +8,8 @@ export default class User extends Model {
   }
 
   static get relationMappings(): RelationMappings {
-    const AnylistModelPath = dbHelpers.importModelPath('Anylist')
-    const ImageModelPath = dbHelpers.importModelPath('Image')
+    const AnylistModelPath = DBHelpers.getModelPath('Anylist')
+    const ImageModelPath = DBHelpers.getModelPath('Image')
 
     return {
       items: {

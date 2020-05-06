@@ -4,7 +4,7 @@ const dbHelpers = {
   /**
    * Returns absolute model path for models inside src/models folder
    */
-  importModelPath(modelName: string): string {
+  getModelPath(modelName: string): string {
     return path.join(__dirname, '..', 'model', modelName)
   },
 }
