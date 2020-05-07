@@ -1,11 +1,11 @@
 import Knex from 'knex'
 import 'ts-node/register'
 
-interface Knexfile {
+interface IKnexfile {
   [env: string]: Knex.Config
 }
 
-const knexfile: Knexfile = {
+const knexfile: IKnexfile = {
   development: {
     client: 'mysql',
     connection: {

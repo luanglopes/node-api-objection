@@ -62,14 +62,14 @@ export class CustomQueryBuilder<M extends Model, R = M[]> extends QueryBuilder<
   }
 }
 
-interface ClassType<InstanceType extends {} = {}> extends Function {
+interface IClassType<InstanceType extends {} = {}> extends Function {
   new (...args: any[]): InstanceType
   prototype: InstanceType
   modifiers: Modifiers
 }
 
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-function SoftDelete<T extends ClassType<Model>>(Base: T) {
+function SoftDelete<T extends IClassType<Model>>(Base: T) {
   class SoftDeleteModel extends Base {
     static QueryBuilder = CustomQueryBuilder
 
