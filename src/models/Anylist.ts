@@ -1,8 +1,9 @@
 import { Model, RelationMappings, QueryBuilder } from 'objection'
 
 import DBHelpers from '../database/DBHelpers'
+import SoftDelete from '../database/mixins/SoftDlete'
 
-export default class Anylist extends Model {
+class Anylist extends Model {
   static get tableName(): string {
     return 'anylists'
   }
@@ -63,3 +64,5 @@ export default class Anylist extends Model {
     }
   }
 }
+
+export default SoftDelete<typeof Anylist>(Anylist)
